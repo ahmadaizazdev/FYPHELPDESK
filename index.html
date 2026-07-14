@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>AIOU FYP Supervisor Recommendation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --bg-primary: #f4f6fa;
+            --bg-secondary: #ffffff;
+            --text-primary: #0b1a2f;
+            --text-secondary: #2a3f5a;
+            --text-muted: #6a7f9a;
+            --accent: #4f46e5;
+            --accent-light: #818cf8;
+            --accent-dark: #4338ca;
+            --accent-glow: rgba(79, 70, 229, 0.08);
+            --card-radius: 16px;
+            --transition: 0.2s ease;
+            --font: 'Outfit', 'Inter', sans-serif;
+            --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.10);
+            --border-color: #e2e8f0;
+            --nav-bg: #ffffff;
+            --input-bg: #ffffff;
+            --input-border: #d1d5db;
+            --tag-bg: #eef2ff;
+            --tag-text: #4f46e5;
+            --badge-bg: #eef2ff;
+            --card-bg: #ffffff;
+            --footer-bg: #ffffff;
+            --scrollbar-track: #e8edf5;
+            --scrollbar-thumb: #b0c4db;
+            --hero-gradient: linear-gradient(145deg, #eef2ff 0%, #f4f6fa 100%);
+            --contact-bg: #f8fafc;
+            --developer-bg: #eef2ff;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0d1424;
+            --bg-secondary: #141d33;
+            --text-primary: #e8edf5;
+            --text-secondary: #b0c4dd;
+            --text-muted: #7a8fa8;
+            --accent: #818cf8;
+            --accent-light: #a5b4fc;
+            --accent-dark: #6366f1;
+            --accent-glow: rgba(129, 140, 248, 0.08);
+            --shadow: 0 2px 12px rgba(0, 0, 0, 0.20);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.30);
+            --border-color: #2a3a5a;
+            --nav-bg: #141d33;
+            --input-bg: #1a2540;
+            --input-border: #2a3a5a;
+            --tag-bg: #1e2a4a;
+            --tag-text: #a5b4fc;
+            --badge-bg: #1e2a4a;
+            --card-bg: #141d33;
+            --footer-bg: #141d33;
+            --scrollbar-track: #1a2640;
+            --scrollbar-thumb: #3a5070;
+            --hero-gradient: linear-gradient(145deg, #111a2e 0%, #0d1424 100%);
+            --contact-bg: #1a2540;
+            --developer-bg: #1a2540;
+        }
+
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background var(--transition), color var(--transition);
+            min-height: 100vh;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .section-padding {
+            padding: 56px 0;
+        }
+        .page {
+            display: none;
+            animation: fadeUp 0.4s ease forwards;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition);
+        }
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 28px;
+            min-height: 44px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+            font-family: var(--font);
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 2px 8px var(--accent-glow);
+            touch-action: manipulation;
+            user-select: none;
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .btn:hover {
+            background: var(--accent-dark);
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+        .btn-sm {
+            padding: 8px 18px;
+            font-size: 0.8rem;
+            min-height: 36px;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin-bottom: 32px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            background: var(--badge-bg);
+            color: var(--accent);
+        }
+        .tag {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            margin: 2px 4px 2px 0;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 8px 20px;
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            white-space: nowrap;
+            min-height: 44px;
+        }
+        .navbar .logo i {
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+        }
+        .nav-links li a {
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition);
+            cursor: pointer;
+            white-space: nowrap;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+        }
+        .nav-links li a:hover,
+        .nav-links li a.active-page {
+            background: var(--tag-bg);
+            color: var(--accent);
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--input-bg);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover {
+            background: var(--tag-bg);
+            transform: rotate(15deg);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px 6px;
+            min-height: 44px;
+            min-width: 44px;
+        }
+        .hamburger span {
+            width: 26px;
+            height: 2.5px;
+            border-radius: 4px;
+            background: var(--text-primary);
+            transition: all var(--transition);
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 130px 0 60px;
+            background: var(--hero-gradient);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+        .hero-content h1 span {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 480px;
+            margin-bottom: 32px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .hero-visual .card {
+            padding: 36px;
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+            background: var(--card-bg);
+        }
+        .hero-visual .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+        .hero-visual .icon-grid .icon-item {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 18px 10px;
+            border: 1px solid var(--border-color);
+            transition: all var(--transition);
+            font-size: 1.8rem;
+            color: var(--accent);
+            cursor: pointer;
+        }
+        .hero-visual .icon-grid .icon-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-hover);
+        }
+        .hero-visual .icon-grid .icon-item span {
+            display: block;
+            font-size: 0.55rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* ===== DOMAINS GRID ===== */
+        .domains-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .domain-card {
+            padding: 24px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+        }
+        .domain-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+        .domain-card .d-icon {
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .domain-card .d-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .domain-card .d-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== SUPERVISORS GRID ===== */
+        .supervisors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+        .supervisor-card {
+            padding: 20px;
+            text-align: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+            cursor: pointer;
+        }
+        .supervisor-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+        .supervisor-card img {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--tag-bg);
+            margin: 0 auto 12px;
+            display: block;
+            border: 2px solid var(--border-color);
+        }
+        .supervisor-card .s-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .supervisor-card .s-designation {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .supervisor-card .s-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+            margin: 10px 0 6px;
+        }
+
+        /* ===== SEARCH BAR ===== */
+        .search-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding: 16px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+        }
+        .search-bar input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 16px;
+            min-height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--input-border);
+            background: var(--input-bg);
+            font-family: var(--font);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            transition: all var(--transition);
+        }
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 32px;
+        }
+        .about-card {
+            padding: 28px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+        }
+        .about-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .about-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ===== CONTACT DIRECTORY (FIXED ALIGNMENT) ===== */
+        .contact-directory {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .contact-header-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 2.5fr;
+            gap: 12px;
+            padding: 10px 18px 14px 18px;
+            border-bottom: 2px solid var(--border-color);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .contact-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 2.5fr;
+            gap: 12px;
+            padding: 12px 18px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            align-items: center;
+            transition: all var(--transition);
+        }
+        .contact-row:hover {
+            background: var(--tag-bg);
+            border-color: var(--accent);
+        }
+
+        .contact-row .c-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+        .contact-row .c-designation {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+        .contact-row .c-contact {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px 16px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .contact-row .c-contact a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .contact-row .c-contact a:hover {
+            color: var(--accent-dark);
+            text-decoration: underline;
+        }
+        .contact-row .c-contact i {
+            color: var(--accent);
+            width: 18px;
+        }
+        .contact-row .c-contact .phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ===== DEVELOPER SECTION ===== */
+        .developer-section {
+            margin-top: 48px;
+            padding: 32px 28px;
+            background: var(--developer-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            text-align: center;
+        }
+        .developer-section .dev-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .developer-section .dev-title {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        .developer-section .dev-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .developer-section .dev-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 40px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all var(--transition);
+        }
+        .developer-section .dev-links a:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        .developer-section .dev-links a i {
+            font-size: 1.1rem;
+        }
+        .developer-section .dev-links a.linkedin:hover {
+            background: #0a66c2;
+            border-color: #0a66c2;
+        }
+        .developer-section .dev-links a.github:hover {
+            background: #181717;
+            border-color: #181717;
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 16px 28px;
+            border-radius: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-hover);
+            font-weight: 500;
+            color: var(--text-primary);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 9999;
+            max-width: 420px;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.30);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            animation: fadeUp 0.3s ease;
+        }
+        .modal-overlay.open {
+            display: flex;
+        }
+        .modal-content {
+            max-width: 560px;
+            width: 100%;
+            padding: 32px 28px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            box-shadow: var(--shadow-hover);
+        }
+        .modal-content .close-modal {
+            float: right;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all var(--transition);
+            min-height: 44px;
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content .close-modal:hover {
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+        .modal-content .profile-pic-lg {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--tag-bg);
+            display: block;
+            margin: 0 auto 12px;
+            border: 2px solid var(--border-color);
+        }
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 4px;
+        }
+        .modal-content .modal-sub {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        .modal-content .domain-priority {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            margin: 12px 0;
+        }
+        .modal-content .domain-priority .priority-tag {
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            border: 1px solid var(--border-color);
+        }
+        .modal-content .domain-priority .priority-tag.primary {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .modal-content .niches-list {
+            padding-left: 20px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        .modal-content .contact-details {
+            margin-top: 16px;
+            padding: 16px;
+            background: var(--contact-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+        .modal-content .contact-details.show {
+            display: block;
+        }
+        .modal-content .contact-details p {
+            margin: 4px 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .modal-content .contact-details i {
+            color: var(--accent);
+            width: 24px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 64px;
+            padding: 32px 0;
+            background: var(--footer-bg);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .footer .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color var(--transition);
+            padding: 4px 8px;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+        }
+        .footer .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* ===== UTILITY ===== */
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+        .not-found {
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .not-found i {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            opacity: 0.2;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-row,
+            .contact-header-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 6px 16px;
+                padding: 12px 16px;
+            }
+            .contact-row .c-contact {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+            .contact-header-row .c-contact {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 6px 16px;
+            }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--nav-bg);
+                border-bottom: 1px solid var(--border-color);
+                padding: 16px;
+                gap: 4px;
+                display: none;
+                box-shadow: var(--shadow);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .nav-links li a {
+                padding: 12px 16px;
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero {
+                padding: 110px 0 40px;
+            }
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .domains-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            .supervisors-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-content {
+                padding: 24px 20px;
+            }
+
+            .contact-row,
+            .contact-header-row {
+                grid-template-columns: 1fr;
+                gap: 4px;
+                padding: 14px 16px;
+                text-align: center;
+            }
+            .contact-row .c-name {
+                font-size: 1rem;
+            }
+            .contact-row .c-designation {
+                font-size: 0.8rem;
+            }
+            .contact-row .c-contact {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px 16px;
+                font-size: 0.85rem;
+            }
+            .contact-header-row {
+                display: none;
+            }
+            .contact-row {
+                border-left: 3px solid var(--accent);
+                border-radius: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .domains-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .supervisors-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .search-bar {
+                flex-direction: column;
+            }
+            .search-bar input {
+                min-width: 100%;
+            }
+            .hero-visual .icon-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .container {
+                padding: 0 12px;
+            }
+            .section-padding {
+                padding: 40px 0;
+            }
+            .toast {
+                right: 16px;
+                left: 16px;
+                max-width: 100%;
+                bottom: 16px;
+                padding: 14px 20px;
+                font-size: 0.9rem;
+            }
+            .developer-section {
+                padding: 24px 16px;
+            }
+            .developer-section .dev-links a {
+                width: 100%;
+                justify-content: center;
+            }
+            .contact-row .c-contact {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        input,
+        select,
+        textarea {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Done!</span></div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo" data-page="home">
+            <i class="fas fa-graduation-cap"></i>
+            <span>AIOU FYP Helper </span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a data-page="home" class="active-page">Home</a></li>
+            <li><a data-page="recommendation">Recommendation</a></li>
+            <li><a data-page="supervisors">Supervisors</a></li>
+            <li><a data-page="domains">Domains</a></li>
+            <li><a data-page="about">About</a></li>
+            <li><a data-page="contact">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ===== HOME ===== -->
+        <section class="page active" id="page-home">
+            <div class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <span class="badge"><i class="fas fa-robot"></i> AI-Powered</span>
+                        <h1>AIOU FYP Supervisor<br /><span>Recommendation System</span></h1>
+                        <p>Find the most suitable supervisor for your Final Year Project based on your domain.</p>
+                        <div class="hero-buttons">
+                            <a href="#" class="btn" data-page="recommendation"><i class="fas fa-rocket"></i> Get Started</a>
+                            <a href="#" class="btn btn-outline" data-page="supervisors"><i class="fas fa-users"></i> Browse Supervisors</a>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="card">
+                            <div class="icon-grid">
+                                <div class="icon-item" data-domain="Artificial Intelligence"><i class="fas fa-brain"></i><span>AI</span></div>
+                                <div class="icon-item" data-domain="Software Engineering"><i class="fas fa-code"></i><span>Software</span></div>
+                                <div class="icon-item" data-domain="Cyber Security"><i class="fas fa-shield-alt"></i><span>Cyber</span></div>
+                                <div class="icon-item" data-domain="Data Science"><i class="fas fa-database"></i><span>Data</span></div>
+                                <div class="icon-item" data-domain="Internet of Things"><i class="fas fa-microchip"></i><span>IoT</span></div>
+                                <div class="icon-item" data-domain="Robotics"><i class="fas fa-robot"></i><span>Robotics</span></div>
+                                <div class="icon-item" data-domain="Networking"><i class="fas fa-network-wired"></i><span>Networking</span></div>
+                                <div class="icon-item" data-domain="Mobile App Development"><i class="fas fa-mobile-alt"></i><span>Mobile</span></div>
+                                <div class="icon-item" data-domain="Cloud Computing"><i class="fas fa-cloud"></i><span>Cloud</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="margin-top:-20px; margin-bottom:40px;">
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:16px; text-align:center;">
+                    <div class="card" style="padding:20px 16px;">
+                        <div style="font-size:1.8rem; font-weight:800; color:var(--accent);">10</div>
+                        <div style="font-size:0.85rem; color:var(--text-muted);">Expert Supervisors</div>
+                    </div>
+                    <div class="card" style="padding:20px 16px;">
+                        <div style="font-size:1.8rem; font-weight:800; color:var(--accent);">26</div>
+                        <div style="font-size:0.85rem; color:var(--text-muted);">Project Domains</div>
+                    </div>
+                    <div class="card" style="padding:20px 16px;">
+                        <div style="font-size:1.8rem; font-weight:800; color:var(--accent);">100%</div>
+                        <div style="font-size:0.85rem; color:var(--text-muted);">Smart Matching</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== RECOMMENDATION ===== -->
+        <section class="page" id="page-recommendation">
+            <div class="container section-padding">
+                <div class="text-center">
+                    <span class="badge"><i class="fas fa-compass"></i> Find Your Match</span>
+                    <h2 class="section-title">Select Your Domain</h2>
+                    <p class="section-sub" style="margin-left:auto;margin-right:auto;">Choose your project domain, then see which supervisors specialize in it.</p>
+                </div>
+                <div class="rec-container" id="recContainer">
+                    <div id="domainContainer"></div>
+                    <div id="supervisorResultContainer" class="hidden">
+                        <div class="flex-between">
+                            <h2 id="selectedDomainTitle" style="font-size:1.6rem; font-weight:700;"></h2>
+                            <button class="btn btn-outline btn-sm" id="backToDomainsBtn"><i class="fas fa-arrow-left"></i> Back to Domains</button>
+                        </div>
+                        <div class="supervisors-grid" id="supervisorResultGrid"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SUPERVISORS ===== -->
+        <section class="page" id="page-supervisors">
+            <div class="container section-padding">
+                <div class="text-center">
+                    <span class="badge"><i class="fas fa-users"></i> Faculty</span>
+                    <h2 class="section-title">All Supervisors</h2>
+                    <p class="section-sub" style="margin-left:auto;margin-right:auto;">Browse all faculty members and their expertise.</p>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="supervisorSearchInput" placeholder="Search by name, specialization, or domain..." />
+                    <button class="btn btn-sm" id="clearSupervisorFilters"><i class="fas fa-times"></i> Clear</button>
+                </div>
+                <div class="supervisors-grid" id="supervisorsGrid"></div>
+                <div id="supervisorNotFound" class="not-found hidden">
+                    <i class="fas fa-search"></i>
+                    <p>No supervisors found matching your criteria.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== DOMAINS ===== -->
+        <section class="page" id="page-domains">
+            <div class="container section-padding">
+                <div class="text-center">
+                    <span class="badge"><i class="fas fa-th-large"></i> Explore</span>
+                    <h2 class="section-title">All Project Domains</h2>
+                    <p class="section-sub" style="margin-left:auto;margin-right:auto;">Discover domains, career scope, and recommended supervisors.</p>
+                </div>
+                <div id="domainsContainer"></div>
+            </div>
+        </section>
+
+        <!-- ===== ABOUT ===== -->
+        <section class="page" id="page-about">
+            <div class="container section-padding">
+                <div class="text-center">
+                    <span class="badge"><i class="fas fa-info-circle"></i> About</span>
+                    <h2 class="section-title">About the System</h2>
+                    <p class="section-sub" style="margin-left:auto;margin-right:auto;">How the AIOU FYP Supervisor Recommendation System works.</p>
+                </div>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h3><i class="fas fa-bullseye" style="color:var(--accent);margin-right:10px;"></i> Our Mission</h3>
+                        <p>To simplify supervisor selection for FYP students at Allama Iqbal Open University by providing intelligent, data‑driven recommendations based on project domains and specialization.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3><i class="fas fa-cogs" style="color:var(--accent);margin-right:10px;"></i> How It Works</h3>
+                        <p>Choose your domain from the list of cards. The system then shows you all supervisors who are experts in that domain. You can click any supervisor to see their full profile, research areas, and suggested niches.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3><i class="fas fa-university" style="color:var(--accent);margin-right:10px;"></i> For Students</h3>
+                        <p>BS Computer Science students can find supervisors who specialize in their area of interest, reducing confusion and making selection efficient.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3><i class="fas fa-chart-line" style="color:var(--accent);margin-right:10px;"></i> Smart Matching</h3>
+                        <p>Our algorithm prioritizes supervisors based on your chosen domain, considering primary and secondary expertise, research areas, and project affinity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT ===== -->
+        <section class="page" id="page-contact">
+            <div class="container section-padding">
+                <div class="text-center">
+                    <span class="badge"><i class="fas fa-address-book"></i> Get in Touch</span>
+                    <h2 class="section-title">Faculty Contact Directory</h2>
+                    <p class="section-sub" style="margin-left:auto;margin-right:auto;">Reach out to supervisors directly via phone or email.</p>
+                </div>
+
+                <!-- Contact Directory -->
+                <div class="contact-directory" id="contactDirectory">
+                    <!-- Rendered by JavaScript -->
+                </div>
+
+                <!-- Developer Section -->
+                <div class="developer-section">
+                    <div class="dev-name">Ahmad Aizaz</div>
+                    <div class="dev-title"> AIOU FYP Recommendation System</div>
+                    <div class="dev-links">
+                        <a href="https://www.linkedin.com/in/ahmadaizaz" target="_blank" rel="noopener noreferrer" class="linkedin">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                        <a href="https://github.com/ahmadaizazdev" target="_blank" rel="noopener noreferrer" class="github">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#" data-page="home">Home</a>
+                <a href="#" data-page="recommendation">Recommendation</a>
+                <a href="#" data-page="supervisors">Supervisors</a>
+                <a href="#" data-page="domains">Domains</a>
+                <a href="#" data-page="about">About</a>
+                <a href="#" data-page="contact">Contact</a>
+            </div>
+            <p>&copy; 2026 <strong>AIOU FYP Supervisor Recommendation System</strong> — Allama Iqbal Open University</p>
+        </div>
+    </footer>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal-overlay" id="profileModal">
+        <div class="modal-content" id="modalContent">
+            <button class="close-modal" id="closeModal"><i class="fas fa-times"></i></button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================================================ -->
+    <script>
+        // ============================================================
+        // SUPERVISORS DATA (10 professors, Umair Hafeez excluded from contact)
+        // ============================================================
+        const SUPERVISORS = [{
+            id: 1,
+            name: 'Dr. Saleem Iqbal',
+            designation: 'Chairman',
+            primary: 'Networking',
+            secondary: ['Cyber Security', 'Game Development', 'Research'],
+            domains: ['Networking', 'Cyber Security', 'Game Development', 'Research'],
+            research: ['Network Security', 'Wireless Networks', 'Game Design'],
+            niches: ['Network Security Analysis', 'Game Development with Unity', 'Research in Networking'],
+            photo: 'sir_saleem.webp',
+            phone: '051-9575350',
+            email: 'saleem.iqbal@aiou.edu.pk'
+        }, {
+            id: 2,
+            name: 'Dr. Aftab Khan',
+            designation: 'Associate Professor',
+            primary: 'Machine Learning',
+            secondary: ['Deep Learning', 'Artificial Neural Networks', 'Software Engineering'],
+            domains: ['Machine Learning', 'Deep Learning', 'ANN', 'AI Applications'],
+            research: ['Neural Networks', 'Deep Learning Architectures', 'AI in Software'],
+            niches: ['Neural Network Optimization', 'Deep Learning for Image Recognition', 'AI-Driven Software'],
+            photo: 'sit_aaftab.webp',
+            phone: '051-9575361',
+            email: 'aftab.khan@aiou.edu.pk'
+        }, {
+            id: 3,
+            name: 'Dr. Moiz Uddin Ahmed Siddiqui',
+            designation: 'Assistant Professor',
+            primary: 'Artificial Intelligence',
+            secondary: ['Machine Learning', 'Data Mining', 'Research'],
+            domains: ['Artificial Intelligence', 'Machine Learning', 'Deep Learning', 'NLP', 'Research'],
+            research: ['AI Algorithms', 'Data Mining', 'Natural Language Processing'],
+            niches: ['AI in Healthcare', 'NLP for Urdu', 'Data Mining Techniques'],
+            photo: 'sir_moiz.webp',
+            phone: '051-9575376',
+            email: 'moiz.ahmed@aiou.edu.pk'
+        }, {
+            id: 4,
+            name: 'Dr. Muhammad Arshad Awan',
+            designation: 'Assistant Professor',
+            primary: 'Artificial Intelligence',
+            secondary: ['Algorithms', 'Software Engineering'],
+            domains: ['Artificial Intelligence', 'Machine Learning', 'Software Engineering', 'Data Science'],
+            research: ['AI Algorithms', 'Software Engineering', 'Data Science'],
+            niches: ['AI in Software Engineering', 'Algorithm Design', 'Data Science Applications'],
+            photo: 'sir_arshad.webp',
+            phone: '051-9575375',
+            email: 'arshad.awan@aiou.edu.pk'
+        }, {
+            id: 5,
+            name: 'Mr. Mohammad Qasim Khan',
+            designation: 'Assistant Professor',
+            primary: 'Cyber Security',
+            secondary: ['Network Security', 'Digital Forensics'],
+            domains: ['Cyber Security', 'Ethical Hacking', 'Digital Forensics', 'Malware Detection', 'Network Security'],
+            research: ['Network Security', 'Digital Forensics', 'Malware Analysis'],
+            niches: ['Network Security Assessment', 'Digital Forensics Tools', 'Malware Detection Techniques'],
+            photo: 'sir_qasim.webp',
+            phone: '051-9575373',
+            email: 'qasim@aiou.edu.pk'
+        }, {
+            id: 6,
+            name: 'Ch. Muhammad Shahbaz Anjum',
+            designation: 'Lecturer',
+            primary: 'Artificial Intelligence',
+            secondary: ['Machine Learning', 'Deep Learning', 'Programming'],
+            domains: ['Artificial Intelligence', 'Machine Learning', 'Deep Learning', 'Programming'],
+            research: ['AI', 'Machine Learning', 'Programming Languages'],
+            niches: ['AI Programming', 'ML Algorithms', 'Deep Learning Models'],
+            photo: 'sir_shahbaz.webp',
+            phone: '051-9575382',
+            email: 'shahbaz.anjum@aiou.edu.pk'
+        }, {
+            id: 7,
+            name: 'Mr. Tahir Javed',
+            designation: 'Lecturer',
+            primary: 'Artificial Intelligence',
+            secondary: ['Machine Learning', 'Deep Learning', 'Computer Vision', 'NLP', 'LLMs', 'Generative AI'],
+            domains: ['AI', 'ML', 'DL', 'NLP', 'LLMs', 'Computer Vision', 'Generative AI'],
+            research: ['AI', 'Computer Vision', 'Natural Language Processing', 'Generative AI'],
+            niches: ['Computer Vision Applications', 'NLP for Chatbots', 'Generative AI Models'],
+            photo: 'sir_tahir.webp',
+            phone: '051-9575383',
+            email: 'tahir@aiou.edu.pk'
+        }, {
+            id: 8,
+            name: 'Mr. Basit Ismail',
+            designation: 'Lecturer',
+            primary: 'Data Science',
+            secondary: ['Machine Learning', 'Data Analytics', 'Big Data'],
+            domains: ['Data Science', 'Machine Learning', 'Big Data', 'Business Intelligence', 'Predictive Analytics'],
+            research: ['Data Science', 'Big Data', 'Predictive Analytics'],
+            niches: ['Big Data Analytics', 'Predictive Modeling', 'Business Intelligence'],
+            photo: 'sir_basit.webp',
+            phone: '051-9575381',
+            email: 'basit.ismail@aiou.edu.pk'
+        }, {
+            id: 9,
+            name: 'Ms. Kashia Riaz',
+            designation: 'Assistant Professor',
+            primary: 'Software Engineering',
+            secondary: ['Flutter', 'Web Development', 'Mobile Applications', 'Game Development'],
+            domains: ['Software Engineering', 'Flutter', 'Web Development', 'Game Development', 'Mobile Applications'],
+            research: ['Software Engineering', 'Mobile Development', 'Game Development'],
+            niches: ['Flutter App Development', 'Web Applications', 'Game Development with Unity'],
+            photo: 'mam_kashia.webp',
+            phone: '051-9575380',
+            email: 'kashia.riaz@aiou.edu.pk'
+        }, {
+            id: 10,
+            name: 'Ms. Yusra Rehmat',
+            designation: 'Research Assistant',
+            primary: 'Internet of Things',
+            secondary: ['Research', 'Documentation'],
+            domains: ['IoT', 'Smart Systems', 'Sensor Networks', 'Research'],
+            research: ['IoT', 'Smart Systems', 'Sensor Networks'],
+            niches: ['IoT Smart Systems', 'Sensor Network Design', 'IoT Research'],
+            photo: 'mam_yousra.webp',
+            phone: '051-9575391',
+            email: 'yusra.rehmat@aiou.edu.pk'
+        }];
+
+        // Note: Umair Hafeez (id 11) is excluded from contact directory as requested.
+
+        const DOMAINS = [
+            { name: 'Artificial Intelligence', icon: 'fa-brain', desc: 'Intelligent systems and cognitive computing.',
+                scope: 'High demand in tech, healthcare, finance.', examples: ['Chatbots', 'Recommendation Systems',
+                    'AI Agents'
+                ] },
+            { name: 'Machine Learning', icon: 'fa-robot', desc: 'Algorithms that learn from data and make predictions.',
+                scope: 'Core to AI, data science, and analytics.', examples: ['Predictive Models', 'Classification',
+                    'Regression'
+                ] },
+            { name: 'Deep Learning', icon: 'fa-layer-group', desc: 'Neural networks with multiple layers for complex patterns.',
+                scope: 'AI research, computer vision, NLP.', examples: ['CNNs', 'RNNs', 'Transformers'] },
+            { name: 'ANN', icon: 'fa-project-diagram', desc: 'Artificial Neural Networks for pattern recognition.',
+                scope: 'AI, robotics, control systems.', examples: ['Perceptron', 'MLP', 'Backpropagation'] },
+            { name: 'Data Science', icon: 'fa-database', desc: 'Extract insights from structured and unstructured data.',
+                scope: 'Analytics, business intelligence, research.', examples: ['Data Mining', 'Visualization',
+                    'EDA'
+                ] },
+            { name: 'Big Data', icon: 'fa-server', desc: 'Processing and analyzing large-scale datasets.',
+                scope: 'Tech, finance, healthcare, IoT.', examples: ['Hadoop', 'Spark', 'Data Lakes'] },
+            { name: 'Computer Vision', icon: 'fa-eye', desc: 'Enable machines to interpret visual information.',
+                scope: 'AI, robotics, healthcare, autonomous vehicles.', examples: ['Image Recognition',
+                    'Object Detection', 'Segmentation'
+                ] },
+            { name: 'NLP', icon: 'fa-language', desc: 'Natural Language Processing for text and speech.',
+                scope: 'Chatbots, translation, sentiment analysis.', examples: ['Tokenization', 'BERT', 'GPT'] },
+            { name: 'LLMs', icon: 'fa-comment-dots', desc: 'Large Language Models for advanced text generation.',
+                scope: 'AI research, content generation, chatbots.', examples: ['GPT', 'BERT', 'LLaMA'] },
+            { name: 'Generative AI', icon: 'fa-paint-brush', desc: 'Generate new content from text, images, and more.',
+                scope: 'Creative AI, content generation, design.', examples: ['GANs', 'Diffusion Models', 'VAEs'] },
+            { name: 'Cyber Security', icon: 'fa-shield-alt', desc: 'Protect systems, networks, and data from attacks.',
+                scope: 'IT, finance, government, defense.', examples: ['Penetration Testing', 'Firewalls',
+                    'Encryption'
+                ] },
+            { name: 'Ethical Hacking', icon: 'fa-user-secret', desc: 'Identify vulnerabilities in systems ethically.',
+                scope: 'Security consulting, penetration testing.', examples: ['Vulnerability Assessment', 'Exploit',
+                    'Security Audit'
+                ] },
+            { name: 'Digital Forensics', icon: 'fa-search', desc: 'Investigate and recover digital evidence.',
+                scope: 'Law enforcement, corporate security.', examples: ['Data Recovery', 'Incident Response',
+                    'Forensic Analysis'
+                ] },
+            { name: 'Networking', icon: 'fa-network-wired', desc: 'Design, manage, and secure computer networks.',
+                scope: 'IT, telecommunications, cloud.', examples: ['Network Design', 'Routing', 'Security'] },
+            { name: 'Software Engineering', icon: 'fa-code', desc: 'Systematic development of software applications.',
+                scope: 'Tech, finance, healthcare, education.', examples: ['SDLC', 'Agile', 'DevOps'] },
+            { name: 'Flutter', icon: 'fa-mobile-alt', desc: 'Cross-platform mobile app development with Flutter.',
+                scope: 'Mobile development, startups, tech firms.', examples: ['Mobile Apps', 'UI Design',
+                    'Firebase'
+                ] },
+            { name: 'Web Development', icon: 'fa-globe', desc: 'Build responsive and interactive web applications.',
+                scope: 'Tech, e-commerce, education, media.', examples: ['React', 'Node.js', 'Full Stack'] },
+            { name: 'Mobile App Development', icon: 'fa-mobile-screen',
+                desc: 'Develop apps for iOS and Android platforms.',
+                scope: 'Tech, startups, enterprise.', examples: ['Swift', 'Kotlin', 'React Native'] },
+            { name: 'Game Development', icon: 'fa-gamepad', desc: 'Design and develop video games for various platforms.',
+                scope: 'Entertainment, education, simulation.', examples: ['Unity', 'Unreal', 'C#'] },
+            { name: 'Internet of Things', icon: 'fa-microchip', desc: 'Internet of Things — connected devices and systems.',
+                scope: 'Smart homes, industry, healthcare.', examples: ['Sensor Networks', 'Smart Devices',
+                    'MQTT'
+                ] },
+            { name: 'Embedded Systems', icon: 'fa-cog', desc: 'Software and hardware for embedded devices.',
+                scope: 'Automotive, medical, consumer electronics.', examples: ['RTOS', 'Arduino', 'Raspberry Pi'] },
+            { name: 'Robotics', icon: 'fa-robot', desc: 'Design, build, and program robots for various tasks.',
+                scope: 'Automation, manufacturing, research.', examples: ['Robot Control', 'SLAM', 'ROS'] },
+            { name: 'Automation', icon: 'fa-industry', desc: 'Automate processes using software and hardware.',
+                scope: 'Manufacturing, logistics, IT.', examples: ['SCADA', 'PLC', 'Automation Tools'] },
+            { name: 'Cloud Computing', icon: 'fa-cloud', desc: 'On-demand computing resources and services over the internet.',
+                scope: 'Tech, enterprise, startups.', examples: ['AWS', 'Azure', 'GCP'] },
+            { name: 'Research', icon: 'fa-flask', desc: 'Academic and applied research in computer science.',
+                scope: 'Academia, R&D, innovation.', examples: ['Literature Review', 'Experiments', 'Publications'] },
+            { name: 'General CS', icon: 'fa-laptop-code', desc: 'Broad computer science concepts and applications.',
+                scope: 'Education, tech, research.', examples: ['Algorithms', 'Data Structures', 'Programming'] },
+        ];
+
+        // ============================================================
+        // APPLICATION LOGIC
+        // ============================================================
+        let currentPage = 'home';
+        let darkMode = false;
+
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('.nav-links a, .footer-links a, .logo');
+        const hamburger = document.getElementById('hamburger');
+        const navLinksContainer = document.getElementById('navLinks');
+        const themeToggle = document.getElementById('themeToggle');
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toastMsg');
+        const supervisorSearchInput = document.getElementById('supervisorSearchInput');
+        const clearSupervisorFilters = document.getElementById('clearSupervisorFilters');
+        const supervisorsGrid = document.getElementById('supervisorsGrid');
+        const supervisorNotFound = document.getElementById('supervisorNotFound');
+        const domainsContainer = document.getElementById('domainsContainer');
+        const profileModal = document.getElementById('profileModal');
+        const modalBody = document.getElementById('modalBody');
+        const closeModal = document.getElementById('closeModal');
+
+        const domainContainer = document.getElementById('domainContainer');
+        const supervisorResultContainer = document.getElementById('supervisorResultContainer');
+        const supervisorResultGrid = document.getElementById('supervisorResultGrid');
+        const selectedDomainTitle = document.getElementById('selectedDomainTitle');
+        const backToDomainsBtn = document.getElementById('backToDomainsBtn');
+        const contactDirectory = document.getElementById('contactDirectory');
+
+        // ============================================================
+        // THEME
+        // ============================================================
+        function setTheme(dark) {
+            darkMode = dark;
+            document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+            themeToggle.innerHTML = dark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('theme', dark ? 'dark' : 'light');
+        }
+
+        function toggleTheme() { setTheme(!darkMode); }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') setTheme(true);
+        else if (savedTheme === 'light') setTheme(false);
+        else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme(true);
+
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // ============================================================
+        // NAVIGATION
+        // ============================================================
+        function navigateTo(page) {
+            if (!page) return;
+            currentPage = page;
+            pages.forEach(p => p.classList.remove('active'));
+            const target = document.getElementById(`page-${page}`);
+            if (target) target.classList.add('active');
+            navLinks.forEach(link => {
+                const p = link.dataset.page;
+                link.classList.toggle('active-page', p === page);
+            });
+            navLinksContainer.classList.remove('open');
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (page === 'supervisors') renderSupervisors();
+            if (page === 'domains') renderDomains();
+            if (page === 'recommendation') renderDomainCards();
+            if (page === 'contact') renderContactDirectory();
+        }
+
+        document.querySelectorAll('[data-page]').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = el.dataset.page;
+                if (page) navigateTo(page);
+            });
+        });
+
+        hamburger.addEventListener('click', () => {
+            const open = navLinksContainer.classList.toggle('open');
+            hamburger.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.navbar')) {
+                navLinksContainer.classList.remove('open');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        document.querySelectorAll('.icon-item[data-domain]').forEach(el => {
+            el.addEventListener('click', function() {
+                const domain = this.dataset.domain;
+                navigateTo('domains');
+                setTimeout(() => showSupervisorsForDomain(domain), 300);
+            });
+        });
+
+        // ============================================================
+        // TOAST
+        // ============================================================
+        let toastTimeout;
+
+        function showToast(msg) {
+            toastMsg.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+
+        // ============================================================
+        // RECOMMENDATION
+        // ============================================================
+        function renderDomainCards() {
+            domainContainer.classList.remove('hidden');
+            supervisorResultContainer.classList.add('hidden');
+
+            let html = `<div class="domains-grid">`;
+            DOMAINS.forEach(d => {
+                html += `
+              <div class="domain-card" data-domain="${d.name}">
+                <div class="d-icon"><i class="fas ${d.icon}"></i></div>
+                <div class="d-name">${d.name}</div>
+                <div class="d-desc">${d.desc}</div>
+              </div>
+            `;
+            });
+            html += `</div>`;
+            domainContainer.innerHTML = html;
+
+            document.querySelectorAll('.domain-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const domainName = this.dataset.domain;
+                    showSupervisorsForDomain(domainName);
+                });
+            });
+        }
+
+        function showSupervisorsForDomain(domain) {
+            const matched = SUPERVISORS.filter(sup =>
+                sup.domains.some(d => d.toLowerCase() === domain.toLowerCase()) ||
+                sup.primary.toLowerCase() === domain.toLowerCase() ||
+                sup.secondary.some(s => s.toLowerCase() === domain.toLowerCase())
+            );
+
+            const isDomainsPage = currentPage === 'domains';
+            if (isDomainsPage) {
+                if (matched.length === 0) {
+                    domainsContainer.innerHTML = `
+                    <div class="not-found">
+                      <i class="fas fa-frown"></i>
+                      <p>No supervisors found for "${domain}".</p>
+                      <button class="btn btn-outline btn-sm mt-16" onclick="renderDomains()">Back to all domains</button>
+                    </div>
+                  `;
+                    return;
+                }
+                domainsContainer.innerHTML = `
+                  <div class="flex-between" style="margin-bottom:16px;">
+                    <h2 style="font-size:1.6rem; font-weight:700;">Supervisors for "${domain}"</h2>
+                    <button class="btn btn-outline btn-sm" onclick="renderDomains()"><i class="fas fa-arrow-left"></i> All Domains</button>
+                  </div>
+                  <div class="supervisors-grid">
+                    ${matched.map(sup => `
+                      <div class="supervisor-card" onclick="openProfileModal(${sup.id})">
+                        <img src="${sup.photo}" alt="${sup.name}" loading="lazy" />
+                        <div class="s-name">${sup.name}</div>
+                        <div class="s-designation">${sup.designation}</div>
+                        <div class="s-tags">
+                          <span class="tag"><strong>${sup.primary}</strong></span>
+                          ${sup.secondary.slice(0,2).map(s => `<span class="tag">${s}</span>`).join('')}
+                        </div>
+                      </div>
+                    `).join('')}
+                  </div>
+                `;
+                return;
+            }
+
+            domainContainer.classList.add('hidden');
+            supervisorResultContainer.classList.remove('hidden');
+            selectedDomainTitle.textContent = `Supervisors for "${domain}"`;
+
+            if (matched.length === 0) {
+                supervisorResultGrid.innerHTML = `
+              <div class="not-found" style="grid-column:1/-1;">
+                <i class="fas fa-frown"></i>
+                <p>No supervisors found for this domain.</p>
+              </div>
+            `;
+                return;
+            }
+
+            supervisorResultGrid.innerHTML = matched.map(sup => `
+            <div class="supervisor-card" onclick="openProfileModal(${sup.id})">
+              <img src="${sup.photo}" alt="${sup.name}" loading="lazy" />
+              <div class="s-name">${sup.name}</div>
+              <div class="s-designation">${sup.designation}</div>
+              <div class="s-tags">
+                <span class="tag"><strong>${sup.primary}</strong></span>
+                ${sup.secondary.slice(0,2).map(s => `<span class="tag">${s}</span>`).join('')}
+              </div>
+            </div>
+          `).join('');
+        }
+
+        backToDomainsBtn.addEventListener('click', function() {
+            renderDomainCards();
+        });
+
+        // ============================================================
+        // SUPERVISORS
+        // ============================================================
+        function renderSupervisors() {
+            let list = [...SUPERVISORS];
+            const searchTerm = supervisorSearchInput.value.toLowerCase().trim();
+
+            if (searchTerm) {
+                list = list.filter(s =>
+                    s.name.toLowerCase().includes(searchTerm) ||
+                    s.primary.toLowerCase().includes(searchTerm) ||
+                    s.secondary.some(sec => sec.toLowerCase().includes(searchTerm)) ||
+                    s.domains.some(d => d.toLowerCase().includes(searchTerm)) ||
+                    s.research.some(r => r.toLowerCase().includes(searchTerm))
+                );
+            }
+
+            if (list.length === 0) {
+                supervisorsGrid.innerHTML = '';
+                supervisorNotFound.classList.remove('hidden');
+                return;
+            }
+            supervisorNotFound.classList.add('hidden');
+
+            supervisorsGrid.innerHTML = list.map(sup => `
+            <div class="supervisor-card" onclick="openProfileModal(${sup.id})">
+              <img src="${sup.photo}" alt="${sup.name}" loading="lazy" />
+              <div class="s-name">${sup.name}</div>
+              <div class="s-designation">${sup.designation}</div>
+              <div class="s-tags">
+                <span class="tag"><strong>${sup.primary}</strong></span>
+                ${sup.secondary.slice(0,3).map(s => `<span class="tag">${s}</span>`).join('')}
+              </div>
+              <div style="margin-top:8px; font-size:0.8rem; color:var(--text-muted);">
+                <strong>Domains:</strong> ${sup.domains.slice(0,4).join(', ')}${sup.domains.length > 4 ? '…' : ''}
+              </div>
+            </div>
+          `).join('');
+        }
+
+        supervisorSearchInput.addEventListener('input', renderSupervisors);
+        clearSupervisorFilters.addEventListener('click', () => {
+            supervisorSearchInput.value = '';
+            renderSupervisors();
+        });
+
+        // ============================================================
+        // DOMAINS
+        // ============================================================
+        function renderDomains() {
+            if (!domainsContainer) return;
+            let html = `<div class="domains-grid">`;
+            DOMAINS.forEach(d => {
+                const sups = SUPERVISORS.filter(s =>
+                    s.domains.some(dn => dn.toLowerCase() === d.name.toLowerCase()) ||
+                    s.primary.toLowerCase() === d.name.toLowerCase() ||
+                    s.secondary.some(sec => sec.toLowerCase() === d.name.toLowerCase())
+                );
+                const supNames = sups.slice(0, 3).map(s => s.name).join(', ');
+                const more = sups.length > 3 ? ` +${sups.length - 3} more` : '';
+
+                html += `
+              <div class="domain-card" onclick="showSupervisorsForDomain('${d.name}')">
+                <div class="d-icon"><i class="fas ${d.icon}"></i></div>
+                <div class="d-name">${d.name}</div>
+                <div class="d-desc">${d.desc}</div>
+                <div style="font-size:0.8rem; color:var(--text-muted); margin:6px 0;">
+                  <strong>Career:</strong> ${d.scope}
+                </div>
+                <div style="font-size:0.8rem; color:var(--text-secondary);">
+                  <strong>Supervisors:</strong> ${supNames || 'None yet'}${more}
+                </div>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">
+                  <strong>Ideas:</strong> ${d.examples.join(' • ')}
+                </div>
+              </div>
+            `;
+            });
+            html += `</div>`;
+            domainsContainer.innerHTML = html;
+        }
+
+        window.showSupervisorsForDomain = showSupervisorsForDomain;
+        window.renderDomains = renderDomains;
+
+        // ============================================================
+        // CONTACT DIRECTORY (excluding Umair Hafeez)
+        // ============================================================
+        function renderContactDirectory() {
+            if (!contactDirectory) return;
+
+            // Filter out Umair Hafeez (id 11) – it's not in the list anyway, but we ensure we only have 10.
+            const contactList = SUPERVISORS.filter(sup => sup.id !== 11);
+
+            let html = `
+            <div class="contact-header-row">
+              <span>Name</span>
+              <span>Designation</span>
+              <span class="c-contact">Contact</span>
+            </div>
+          `;
+
+            contactList.forEach(sup => {
+                html += `
+              <div class="contact-row">
+                <div class="c-name">${sup.name}</div>
+                <div class="c-designation">${sup.designation}</div>
+                <div class="c-contact">
+                  <a href="mailto:${sup.email}"><i class="fas fa-envelope"></i> ${sup.email}</a>
+                  <span class="phone"><i class="fas fa-phone"></i> ${sup.phone}</span>
+                </div>
+              </div>
+            `;
+            });
+
+            contactDirectory.innerHTML = html;
+        }
+
+        // ============================================================
+        // PROFILE MODAL
+        // ============================================================
+        function openProfileModal(supOrId) {
+            let sup;
+            if (typeof supOrId === 'number') {
+                sup = SUPERVISORS.find(s => s.id === supOrId);
+            } else {
+                sup = supOrId;
+            }
+            if (!sup) return;
+
+            const primary = sup.primary;
+            const secondary = sup.secondary || [];
+            const priorityDomains = [primary, ...secondary.filter(d => d !== primary), ...(sup.domains || []).filter(d => d !==
+                primary && !secondary.includes(d))];
+
+            modalBody.innerHTML = `
+            <img class="profile-pic-lg" src="${sup.photo}" alt="${sup.name}" />
+            <h2>${sup.name}</h2>
+            <div class="modal-sub">${sup.designation}</div>
+
+            <div style="margin: 12px 0 8px;">
+              <strong style="color:var(--text-secondary);">Prioritized Domains</strong>
+              <div class="domain-priority">
+                ${priorityDomains.map((d, i) => `
+                  <span class="priority-tag ${i === 0 ? 'primary' : ''}">${d}</span>
+                `).join('')}
+              </div>
+            </div>
+
+            <div style="margin-bottom:12px;">
+              <strong style="color:var(--text-secondary);">Research Areas</strong>
+              <div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:4px;">
+                ${sup.research.map(r => `<span class="tag">${r}</span>`).join('')}
+              </div>
+            </div>
+            <div style="margin-bottom:12px;">
+              <strong style="color:var(--text-secondary);">Niches</strong>
+              <ul class="niches-list">
+                ${sup.niches.map(n => `<li>${n}</li>`).join('')}
+              </ul>
+            </div>
+            <button class="btn btn-sm" style="width:100%; justify-content:center; margin-top:8px;" id="toggleContactBtn">
+              <i class="fas fa-envelope"></i> Contact Supervisor
+            </button>
+            <div class="contact-details" id="contactDetails">
+              <p><i class="fas fa-phone"></i> ${sup.phone}</p>
+              <p><i class="fas fa-envelope"></i> ${sup.email}</p>
+            </div>
+          `;
+            profileModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+
+            document.getElementById('toggleContactBtn').addEventListener('click', function() {
+                const details = document.getElementById('contactDetails');
+                details.classList.toggle('show');
+                this.innerHTML = details.classList.contains('show') ?
+                    '<i class="fas fa-chevron-up"></i> Hide Contact Details' :
+                    '<i class="fas fa-envelope"></i> Contact Supervisor';
+            });
+        }
+
+        window.openProfileModal = openProfileModal;
+
+        function closeProfileModal() {
+            profileModal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        closeModal.addEventListener('click', closeProfileModal);
+        profileModal.addEventListener('click', (e) => {
+            if (e.target === profileModal) closeProfileModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeProfileModal();
+        });
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        function init() {
+            navigateTo('home');
+            renderDomainCards();
+            renderSupervisors();
+            renderDomains();
+            renderContactDirectory();
+
+            window.addEventListener('popstate', () => {
+                navigateTo('home');
+            });
+
+            console.log('AIOU FYP Supervisor Recommendation System loaded.');
+            console.log(' Images loaded from the same folder as index.html');
+            console.log('Developed by Ahmad Aizaz');
+        }
+
+        init();
+    </script>
+
+</body>
+</html>
