@@ -39,6 +39,8 @@
             --hero-gradient: linear-gradient(145deg, #eef2ff 0%, #f4f6fa 100%);
             --contact-bg: #f8fafc;
             --developer-bg: #eef2ff;
+            --note-bg: rgba(79, 70, 229, 0.06);
+            --note-border: rgba(79, 70, 229, 0.2);
         }
 
         [data-theme="dark"] {
@@ -67,6 +69,8 @@
             --hero-gradient: linear-gradient(145deg, #111a2e 0%, #0d1424 100%);
             --contact-bg: #1a2540;
             --developer-bg: #1a2540;
+            --note-bg: rgba(129, 140, 248, 0.08);
+            --note-border: rgba(129, 140, 248, 0.2);
         }
 
         /* ===== RESET & BASE ===== */
@@ -218,6 +222,41 @@
             background: var(--tag-bg);
             color: var(--tag-text);
             margin: 2px 4px 2px 0;
+        }
+
+        /* ===== INFO NOTE ===== */
+        .info-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px 20px;
+            background: var(--note-bg);
+            border-left: 4px solid var(--accent);
+            border-radius: var(--card-radius);
+            margin-bottom: 28px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border: 1px solid var(--note-border);
+            transition: all var(--transition);
+        }
+        .info-note:hover {
+            background: var(--badge-bg);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        .info-note i {
+            color: var(--accent);
+            font-size: 1.4rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .info-note strong {
+            color: var(--text-primary);
+        }
+        .info-note .highlight {
+            color: var(--accent);
+            font-weight: 600;
         }
 
         /* ===== NAVIGATION ===== */
@@ -533,7 +572,7 @@
             line-height: 1.7;
         }
 
-        /* ===== CONTACT DIRECTORY (FIXED ALIGNMENT) ===== */
+        /* ===== CONTACT DIRECTORY ===== */
         .contact-directory {
             display: flex;
             flex-direction: column;
@@ -977,6 +1016,12 @@
                 border-left: 3px solid var(--accent);
                 border-radius: 12px;
             }
+            .info-note {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 16px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1046,7 +1091,7 @@
     <nav class="navbar" id="navbar">
         <a href="#" class="logo" data-page="home">
             <i class="fas fa-graduation-cap"></i>
-            <span>AIOU FYP Helper </span>
+            <span>AIOU FYP</span>
         </a>
         <ul class="nav-links" id="navLinks">
             <li><a data-page="home" class="active-page">Home</a></li>
@@ -1096,10 +1141,12 @@
                     </div>
                 </div>
             </div>
-            <div class="container" style="margin-top:-20px; margin-bottom:40px;">
+
+            <!-- Stats Cards -->
+            <div class="container" style="margin-top:-20px; margin-bottom:24px;">
                 <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:16px; text-align:center;">
                     <div class="card" style="padding:20px 16px;">
-                        <div style="font-size:1.8rem; font-weight:800; color:var(--accent);">10</div>
+                        <div style="font-size:1.8rem; font-weight:800; color:var(--accent);">11</div>
                         <div style="font-size:0.85rem; color:var(--text-muted);">Expert Supervisors</div>
                     </div>
                     <div class="card" style="padding:20px 16px;">
@@ -1109,6 +1156,18 @@
                     <div class="card" style="padding:20px 16px;">
                         <div style="font-size:1.8rem; font-weight:800; color:var(--accent);">100%</div>
                         <div style="font-size:0.85rem; color:var(--text-muted);">Smart Matching</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== BEAUTIFUL NOTE ON LANDING PAGE ===== -->
+            <div class="container" style="margin-bottom: 40px;">
+                <div class="info-note">
+                    <i class="fas fa-sparkles"></i>
+                    <div>
+                        <strong>Note:</strong> Every professor can work on multiple project domains.
+                        The recommendations shown are carefully <span class="highlight">prioritized based on their primary proficiency</span>
+                        to ensure you get the best possible guidance for your chosen domain.
                     </div>
                 </div>
             </div>
@@ -1122,12 +1181,31 @@
                     <h2 class="section-title">Select Your Domain</h2>
                     <p class="section-sub" style="margin-left:auto;margin-right:auto;">Choose your project domain, then see which supervisors specialize in it.</p>
                 </div>
+
+                <!-- ===== BEAUTIFUL NOTE ===== -->
+                <div class="info-note">
+                    <i class="fas fa-sparkles"></i>
+                    <div>
+                        <strong>Note:</strong> Every professor can work on multiple project domains.
+                        The recommendations shown are carefully <span class="highlight">prioritized based on their primary proficiency</span>
+                        to ensure you get the best possible guidance for your chosen domain.
+                    </div>
+                </div>
+
                 <div class="rec-container" id="recContainer">
                     <div id="domainContainer"></div>
                     <div id="supervisorResultContainer" class="hidden">
                         <div class="flex-between">
                             <h2 id="selectedDomainTitle" style="font-size:1.6rem; font-weight:700;"></h2>
                             <button class="btn btn-outline btn-sm" id="backToDomainsBtn"><i class="fas fa-arrow-left"></i> Back to Domains</button>
+                        </div>
+                        <!-- Small note in results -->
+                        <div class="info-note" style="margin-top: 12px; margin-bottom: 16px; padding: 12px 16px; font-size: 0.85rem;">
+                            <i class="fas fa-lightbulb" style="font-size: 1rem;"></i>
+                            <div>
+                                <strong>Prioritized:</strong> Supervisors are ranked by their <span class="highlight">primary specialization</span>
+                                to give you the most relevant matches for your domain.
+                            </div>
                         </div>
                         <div class="supervisors-grid" id="supervisorResultGrid"></div>
                     </div>
@@ -1213,7 +1291,7 @@
                 <!-- Developer Section -->
                 <div class="developer-section">
                     <div class="dev-name">Ahmad Aizaz</div>
-                    <div class="dev-title"> AIOU FYP Recommendation System</div>
+                    <div class="dev-title">Developer &amp; Designer — AIOU FYP Recommendation System</div>
                     <div class="dev-links">
                         <a href="https://www.linkedin.com/in/ahmadaizaz" target="_blank" rel="noopener noreferrer" class="linkedin">
                             <i class="fab fa-linkedin-in"></i> LinkedIn
@@ -1256,7 +1334,7 @@
     <!-- ============================================================ -->
     <script>
         // ============================================================
-        // SUPERVISORS DATA (10 professors, Umair Hafeez excluded from contact)
+        // SUPERVISORS DATA
         // ============================================================
         const SUPERVISORS = [{
             id: 1,
@@ -1378,8 +1456,8 @@
             photo: 'mam_yousra.webp',
             phone: '051-9575391',
             email: 'yusra.rehmat@aiou.edu.pk'
-        },{
-               id: 11,
+        }, {
+            id: 11,
             name: 'Engr. Umair Hafeez Khan',
             designation: 'Assistant Professor',
             primary: 'Embedded Systems',
@@ -1391,7 +1469,6 @@
             phone: '051-9575384',
             email: 'umair.hafeez@aiou.edu.pk'
         }];
-
 
         const DOMAINS = [
             { name: 'Artificial Intelligence', icon: 'fa-brain', desc: 'Intelligent systems and cognitive computing.',
@@ -1771,7 +1848,6 @@
         function renderContactDirectory() {
             if (!contactDirectory) return;
 
-            // Filter out Umair Hafeez (id 11) – it's not in the list anyway, but we ensure we only have 10.
             const contactList = SUPERVISORS.filter(sup => sup.id !== 11);
 
             let html = `
@@ -1892,7 +1968,7 @@
             });
 
             console.log('AIOU FYP Supervisor Recommendation System loaded.');
-            console.log(' Images loaded from the same folder as index.html');
+            console.log('Images loaded from the same folder as index.html');
             console.log('Developed by Ahmad Aizaz');
         }
 
