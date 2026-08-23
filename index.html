@@ -906,6 +906,339 @@
             opacity: 0.2;
         }
 
+        /* ===== FYP SUBMISSION FORM ===== */
+        .form-wrapper {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+        .required-mark {
+            color: #e11d48;
+            margin-left: 2px;
+        }
+
+        /* Step indicator */
+        .step-indicator {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 36px;
+            gap: 4px;
+        }
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            min-width: 0;
+        }
+        .step-item .step-circle {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            background: var(--tag-bg);
+            color: var(--text-muted);
+            border: 2px solid var(--border-color);
+            transition: all var(--transition);
+            flex-shrink: 0;
+        }
+        .step-item .step-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-align: center;
+            white-space: nowrap;
+        }
+        .step-item.active .step-circle {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+        .step-item.active .step-label {
+            color: var(--accent);
+        }
+        .step-item.completed .step-circle {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+        .step-item.completed .step-circle::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+        }
+        .step-line {
+            flex: 0 0 auto;
+            width: 100%;
+            max-width: 60px;
+            height: 2px;
+            background: var(--border-color);
+            margin-top: 17px;
+        }
+
+        /* Steps */
+        .form-step {
+            display: none;
+            animation: fadeUp 0.3s ease forwards;
+        }
+        .form-step.active {
+            display: block;
+        }
+        .form-step-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .form-step-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        .form-grid .span-2 {
+            grid-column: 1 / -1;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 14px;
+            min-height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--input-border);
+            background: var(--input-bg);
+            font-family: var(--font);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            transition: all var(--transition);
+        }
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+        .form-group.field-error .form-input,
+        .form-group.field-error .form-select,
+        .form-group.field-error .form-textarea {
+            border-color: #e11d48;
+        }
+        .field-error-msg {
+            display: none;
+            font-size: 0.78rem;
+            color: #e11d48;
+            font-weight: 500;
+        }
+        .form-group.field-error .field-error-msg {
+            display: block;
+        }
+        .field-help {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* Radio / checkbox */
+        .radio-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            min-height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--input-border);
+            background: var(--input-bg);
+            cursor: pointer;
+            transition: all var(--transition);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .radio-option:hover {
+            border-color: var(--accent);
+        }
+        .radio-option input {
+            accent-color: var(--accent);
+            width: 16px;
+            height: 16px;
+        }
+        .radio-option.checked {
+            border-color: var(--accent);
+            background: var(--tag-bg);
+            color: var(--accent);
+        }
+
+        .checkbox-line {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--input-border);
+            background: var(--input-bg);
+            margin-bottom: 10px;
+        }
+        .checkbox-line input {
+            accent-color: var(--accent);
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .checkbox-line label {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        .member-block {
+            padding: 16px;
+            border: 1px dashed var(--border-color);
+            border-radius: 12px;
+            margin-top: 6px;
+        }
+        .member-block-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        /* Supervisor reference list */
+        .supervisor-ref-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .supervisor-ref-item {
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-primary);
+            font-size: 0.82rem;
+        }
+        .supervisor-ref-item .sr-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+        .supervisor-ref-item .sr-designation {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            margin-bottom: 6px;
+        }
+
+        .form-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            gap: 12px;
+        }
+
+        /* Success view */
+        .success-view {
+            text-align: center;
+            padding: 24px 0;
+        }
+        .success-icon {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            background: var(--tag-bg);
+            color: var(--accent);
+            font-size: 2.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        .success-id-badge {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 10px 24px;
+            border-radius: 40px;
+            background: var(--tag-bg);
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.02em;
+        }
+        .success-note {
+            margin-top: 18px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            max-width: 460px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Local submissions table (device backup) */
+        .submissions-table-wrap {
+            overflow-x: auto;
+        }
+        .submissions-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+        .submissions-table th,
+        .submissions-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+            white-space: nowrap;
+        }
+        .submissions-table th {
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.04em;
+        }
+        .status-select {
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--input-border);
+            background: var(--input-bg);
+            color: var(--text-primary);
+            font-size: 0.78rem;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .hero .container {
@@ -1022,6 +1355,21 @@
                 text-align: center;
                 padding: 16px;
             }
+            .form-wrapper {
+                padding: 22px 16px;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .step-item .step-label {
+                display: none;
+            }
+            .step-line {
+                max-width: 24px;
+            }
+            .supervisor-ref-list {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1073,6 +1421,15 @@
                 flex-direction: column;
                 align-items: center;
             }
+            .form-nav {
+                flex-direction: column-reverse;
+            }
+            .form-nav .btn {
+                width: 100%;
+            }
+            .radio-group {
+                flex-direction: column;
+            }
         }
 
         input,
@@ -1098,6 +1455,7 @@
             <li><a data-page="recommendation">Recommendation</a></li>
             <li><a data-page="supervisors">Supervisors</a></li>
             <li><a data-page="domains">Domains</a></li>
+            <li><a data-page="submit">Submit FYP</a></li>
             <li><a data-page="about">About</a></li>
             <li><a data-page="contact">Contact</a></li>
         </ul>
@@ -1245,6 +1603,280 @@
             </div>
         </section>
 
+        <!-- ===== SUBMIT FYP ===== -->
+        <section class="page" id="page-submit">
+            <div class="container section-padding">
+                <div class="text-center">
+                    <span class="badge"><i class="fas fa-file-signature"></i> FYP Submission</span>
+                    <h2 class="section-title">Submit Your FYP Information</h2>
+                    <p class="section-sub" style="margin-left:auto;margin-right:auto;">Complete all steps below to submit your Final Year Project details to the FYP committee.</p>
+                </div>
+
+                <div class="info-note">
+                    <i class="fas fa-circle-info"></i>
+                    <div>
+                        <strong>Note:</strong> Fields marked with <span class="required-mark">*</span> are required.
+                        Supervisor preference <span class="highlight">does not guarantee final allocation</span> —
+                        final supervisor assignment is made by the department/FYP committee.
+                    </div>
+                </div>
+
+                <div class="form-wrapper card" id="fypFormWrapper">
+
+                    <!-- Step indicator -->
+                    <div class="step-indicator" id="fypStepIndicator">
+                        <div class="step-item active" data-step="1"><span class="step-circle">1</span><span class="step-label">Student</span></div>
+                        <div class="step-line"></div>
+                        <div class="step-item" data-step="2"><span class="step-circle">2</span><span class="step-label">Group</span></div>
+                        <div class="step-line"></div>
+                        <div class="step-item" data-step="3"><span class="step-circle">3</span><span class="step-label">Proposal</span></div>
+                        <div class="step-line"></div>
+                        <div class="step-item" data-step="4"><span class="step-circle">4</span><span class="step-label">Supervisor</span></div>
+                        <div class="step-line"></div>
+                        <div class="step-item" data-step="5"><span class="step-circle">5</span><span class="step-label">Declaration</span></div>
+                    </div>
+
+                    <!-- FORM -->
+                    <form id="fypForm" novalidate>
+
+                        <!-- ===== STEP 1: STUDENT INFORMATION ===== -->
+                        <div class="form-step active" data-step="1">
+                            <div class="form-step-title"><i class="fas fa-user" style="color:var(--accent);margin-right:8px;"></i>Student Information</div>
+                            <div class="form-step-desc">Basic academic details about you.</div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="fyp-name">Student Name <span class="required-mark">*</span></label>
+                                    <input type="text" id="fyp-name" class="form-input" placeholder="e.g. Ali Ahmed" required />
+                                    <span class="field-error-msg">Please enter your full name.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fyp-reg">Registration / Roll Number <span class="required-mark">*</span></label>
+                                    <input type="text" id="fyp-reg" class="form-input" placeholder="e.g. 0000123456" required />
+                                    <span class="field-error-msg">Please enter your registration/roll number.</span>
+                                </div>
+                                <div class="form-group span-2">
+                                    <label for="fyp-email">University Email <span class="required-mark">*</span></label>
+                                    <input type="email" id="fyp-email" class="form-input" placeholder="e.g. student@aiou.edu.pk" required />
+                                    <span class="field-error-msg">Please enter a valid email address.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fyp-program">Degree / Program</label>
+                                    <input type="text" id="fyp-program" class="form-input" placeholder="e.g. BS Computer Science" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="fyp-batch">Batch</label>
+                                    <input type="text" id="fyp-batch" class="form-input" placeholder="e.g. 2023" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="fyp-semester">Semester</label>
+                                    <input type="text" id="fyp-semester" class="form-input" placeholder="e.g. 7th" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== STEP 2: PROJECT GROUP INFORMATION ===== -->
+                        <div class="form-step" data-step="2">
+                            <div class="form-step-title"><i class="fas fa-users" style="color:var(--accent);margin-right:8px;"></i>Project Group Information</div>
+                            <div class="form-step-desc">Tell us whether this is an individual or group project.</div>
+
+                            <div class="form-group span-2" style="margin-bottom:18px;">
+                                <label>Project Type <span class="required-mark">*</span></label>
+                                <div class="radio-group" id="fyp-project-type-group">
+                                    <label class="radio-option"><input type="radio" name="fyp-project-type" value="Individual" checked /> Individual</label>
+                                    <label class="radio-option"><input type="radio" name="fyp-project-type" value="Group" /> Group</label>
+                                </div>
+                            </div>
+
+                            <div class="form-grid" id="fyp-group-size-wrap" style="display:none;">
+                                <div class="form-group">
+                                    <label for="fyp-member-count">Number of Project Members <span class="required-mark">*</span></label>
+                                    <select id="fyp-member-count" class="form-select">
+                                        <option value="2">2 Members</option>
+                                        <option value="3">3 Members</option>
+                                    </select>
+                                    <span class="field-help">Maximum group size is 3 members (including group leader).</span>
+                                </div>
+                            </div>
+
+                            <div class="member-block" id="fyp-leader-block" style="display:none;">
+                                <div class="member-block-title">Group Leader</div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="fyp-leader-name">Group Leader Name <span class="required-mark">*</span></label>
+                                        <input type="text" id="fyp-leader-name" class="form-input" />
+                                        <span class="field-error-msg">Please enter the group leader's name.</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fyp-leader-reg">Group Leader Registration Number <span class="required-mark">*</span></label>
+                                        <input type="text" id="fyp-leader-reg" class="form-input" />
+                                        <span class="field-error-msg">Please enter the group leader's registration number.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="member-block" id="fyp-m2-block" style="display:none;">
+                                <div class="member-block-title">Member 2</div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="fyp-m2-name">Member 2 Name <span class="required-mark">*</span></label>
+                                        <input type="text" id="fyp-m2-name" class="form-input" />
+                                        <span class="field-error-msg">Please enter Member 2's name.</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fyp-m2-reg">Member 2 Registration Number <span class="required-mark">*</span></label>
+                                        <input type="text" id="fyp-m2-reg" class="form-input" />
+                                        <span class="field-error-msg">Please enter Member 2's registration number.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="member-block" id="fyp-m3-block" style="display:none;">
+                                <div class="member-block-title">Member 3</div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="fyp-m3-name">Member 3 Name <span class="required-mark">*</span></label>
+                                        <input type="text" id="fyp-m3-name" class="form-input" />
+                                        <span class="field-error-msg">Please enter Member 3's name.</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fyp-m3-reg">Member 3 Registration Number <span class="required-mark">*</span></label>
+                                        <input type="text" id="fyp-m3-reg" class="form-input" />
+                                        <span class="field-error-msg">Please enter Member 3's registration number.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== STEP 3: PROJECT PROPOSAL ===== -->
+                        <div class="form-step" data-step="3">
+                            <div class="form-step-title"><i class="fas fa-lightbulb" style="color:var(--accent);margin-right:8px;"></i>Project Proposal</div>
+                            <div class="form-step-desc">Describe your proposed project idea and domain.</div>
+                            <div class="form-grid">
+                                <div class="form-group span-2">
+                                    <label for="fyp-title">Proposed Project Title <span class="required-mark">*</span></label>
+                                    <input type="text" id="fyp-title" class="form-input" placeholder="e.g. Smart Attendance System Using Face Recognition" required />
+                                    <span class="field-error-msg">Please enter your proposed project title.</span>
+                                </div>
+                                <div class="form-group span-2">
+                                    <label for="fyp-description">Project Description <span class="required-mark">*</span></label>
+                                    <textarea id="fyp-description" class="form-textarea" required></textarea>
+                                    <span class="field-help">Briefly describe the proposed project, purpose, users and major functionality.</span>
+                                    <span class="field-error-msg">Please describe your project.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fyp-primary-domain">Primary Project Domain <span class="required-mark">*</span></label>
+                                    <select id="fyp-primary-domain" class="form-select" required>
+                                        <option value="">Select a domain…</option>
+                                    </select>
+                                    <span class="field-error-msg">Please select the primary domain.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fyp-secondary-domain">Secondary Project Domain</label>
+                                    <select id="fyp-secondary-domain" class="form-select">
+                                        <option value="">Select a domain… (optional)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fyp-preferred-topic">Preferred Project Topic <span class="required-mark">*</span></label>
+                                    <select id="fyp-preferred-topic" class="form-select" required>
+                                        <option value="">Select a topic…</option>
+                                    </select>
+                                    <span class="field-error-msg">Please select a preferred topic.</span>
+                                </div>
+                                <div class="form-group" id="fyp-custom-topic-wrap" style="display:none;">
+                                    <label for="fyp-custom-topic">Custom Project Topic <span class="required-mark">*</span></label>
+                                    <input type="text" id="fyp-custom-topic" class="form-input" />
+                                    <span class="field-help">Complete only if your topic is not listed above.</span>
+                                    <span class="field-error-msg">Please enter your custom project topic.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== STEP 4: SUPERVISOR PREFERENCES ===== -->
+                        <div class="form-step" data-step="4">
+                            <div class="form-step-title"><i class="fas fa-chalkboard-teacher" style="color:var(--accent);margin-right:8px;"></i>Supervisor Preferences</div>
+                            <div class="form-step-desc">Browse the supervisor directory below, then choose your preferences in order.</div>
+
+                            <div class="supervisor-ref-list" id="fyp-supervisor-ref-list"></div>
+
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="fyp-sup1">1st Choice Supervisor <span class="required-mark">*</span></label>
+                                    <select id="fyp-sup1" class="form-select fyp-sup-select" required>
+                                        <option value="">Select supervisor…</option>
+                                    </select>
+                                    <span class="field-error-msg">Please select your 1st choice supervisor.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fyp-sup2">2nd Choice Supervisor</label>
+                                    <select id="fyp-sup2" class="form-select fyp-sup-select">
+                                        <option value="">Select supervisor…</option>
+                                    </select>
+                                    <span class="field-error-msg">This supervisor is already selected as another choice.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fyp-sup3">3rd Choice Supervisor</label>
+                                    <select id="fyp-sup3" class="form-select fyp-sup-select">
+                                        <option value="">Select supervisor…</option>
+                                    </select>
+                                    <span class="field-error-msg">This supervisor is already selected as another choice.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Have you discussed this project with a supervisor? <span class="required-mark">*</span></label>
+                                    <div class="radio-group" id="fyp-discussed-group">
+                                        <label class="radio-option"><input type="radio" name="fyp-discussed" value="Yes" /> Yes</label>
+                                        <label class="radio-option"><input type="radio" name="fyp-discussed" value="No" /> No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== STEP 5: DECLARATION & SUBMIT ===== -->
+                        <div class="form-step" data-step="5">
+                            <div class="form-step-title"><i class="fas fa-clipboard-check" style="color:var(--accent);margin-right:8px;"></i>Declaration &amp; Submit</div>
+                            <div class="form-step-desc">Please confirm the following before submitting.</div>
+
+                            <div class="checkbox-line">
+                                <input type="checkbox" id="fyp-decl1" />
+                                <label for="fyp-decl1">I confirm that the information provided is accurate and complete. <span class="required-mark">*</span></label>
+                            </div>
+                            <div class="checkbox-line">
+                                <input type="checkbox" id="fyp-decl2" />
+                                <label for="fyp-decl2">I understand that supervisor preference does not guarantee final allocation. <span class="required-mark">*</span></label>
+                            </div>
+                            <div class="checkbox-line">
+                                <input type="checkbox" id="fyp-decl3" />
+                                <label for="fyp-decl3">I agree that final supervisor allocation will be made by the department/FYP committee. <span class="required-mark">*</span></label>
+                            </div>
+                            <span class="field-error-msg" id="fyp-decl-error" style="display:none;">Please accept all three declarations to continue.</span>
+
+                            <div class="form-group span-2" style="margin-top:18px;">
+                                <label for="fyp-remarks">Additional Remarks</label>
+                                <textarea id="fyp-remarks" class="form-textarea" placeholder="Optional — anything else you'd like the FYP committee to know."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- NAV BUTTONS -->
+                        <div class="form-nav">
+                            <button type="button" class="btn btn-outline" id="fypBackBtn" style="visibility:hidden;"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button type="button" class="btn" id="fypNextBtn">Next <i class="fas fa-arrow-right"></i></button>
+                            <button type="submit" class="btn hidden" id="fypSubmitBtn"><i class="fas fa-paper-plane"></i> Submit FYP</button>
+                        </div>
+                    </form>
+
+                    <!-- SUCCESS VIEW -->
+                    <div class="success-view hidden" id="fypSuccessView">
+                        <div class="success-icon"><i class="fas fa-check"></i></div>
+                        <h3 style="font-size:1.5rem;font-weight:700;">FYP Submission Successful</h3>
+                        <p style="color:var(--text-secondary);margin-top:8px;">Your FYP information has been submitted successfully.</p>
+                        <div class="success-id-badge" id="fypSuccessId">Submission ID: FYP-2026-00000</div>
+                        <p class="success-note">Please save this Submission ID for your records. The FYP committee will review your submission and contact you regarding supervisor allocation.</p>
+                        <button class="btn btn-outline mt-16" id="fypSubmitAnotherBtn"><i class="fas fa-plus"></i> Submit Another</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ===== ABOUT ===== -->
         <section class="page" id="page-about">
             <div class="container section-padding">
@@ -1314,6 +1946,7 @@
                 <a href="#" data-page="recommendation">Recommendation</a>
                 <a href="#" data-page="supervisors">Supervisors</a>
                 <a href="#" data-page="domains">Domains</a>
+                <a href="#" data-page="submit">Submit FYP</a>
                 <a href="#" data-page="about">About</a>
                 <a href="#" data-page="contact">Contact</a>
             </div>
@@ -1545,6 +2178,41 @@
         ];
 
         // ============================================================
+        // FYP SUBMISSION FORM DATA
+        // Predefined project topics. Edit/add/remove entries here to
+        // update the "Preferred Project Topic" dropdown across the site.
+        // Keep 'Other / Custom Topic' as the LAST entry — it triggers the
+        // custom topic input field.
+        // ============================================================
+        const PROJECT_TOPICS = [
+            'AI-Based Chatbot System',
+            'Machine Learning Based Recommendation System',
+            'Deep Learning Based Image Recognition System',
+            'Natural Language Processing Application',
+            'Computer Vision Based Detection System',
+            'IoT Based Smart Home / Smart Campus System',
+            'Cyber Security / Network Intrusion Detection System',
+            'Blockchain Based Application',
+            'E-Commerce Web Application',
+            'Mobile Application (Android/iOS/Flutter)',
+            'Hospital / Patient Management System',
+            'Learning Management System (LMS)',
+            'Data Analytics / Business Intelligence Dashboard',
+            'Embedded Systems / Robotics Project',
+            'Game Development Project',
+            'Other / Custom Topic'
+        ];
+
+        // ============================================================
+        // FYP SHEETS INTEGRATION
+        // Paste the Google Apps Script Web App URL here after deploying
+        // it (see fyp-submission-setup.md for full instructions).
+        // No credentials are ever placed in this frontend code — the
+        // Apps Script project holds the Google Sheets access, not this file.
+        // ============================================================
+        const FYP_SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzzyzYY6PrxUcy6LyMvJzHbhyD_nM6gUb_mXOqqP_2FYLkbg03RGgyMB7WYqaMMMWDe6Q/exec";
+
+        // ============================================================
         // APPLICATION LOGIC
         // ============================================================
         let currentPage = 'home';
@@ -1613,6 +2281,7 @@
             if (page === 'domains') renderDomains();
             if (page === 'recommendation') renderDomainCards();
             if (page === 'contact') renderContactDirectory();
+            if (page === 'submit') initFypForm();
         }
 
         document.querySelectorAll('[data-page]').forEach(el => {
@@ -1952,6 +2621,394 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeProfileModal();
         });
+
+        // ============================================================
+        // FYP SUBMISSION FORM
+        // ============================================================
+        let fypInitialized = false;
+        let fypCurrentStep = 1;
+        const FYP_TOTAL_STEPS = 5;
+
+        function initFypForm() {
+            if (fypInitialized) return;
+            fypInitialized = true;
+
+            const fypForm = document.getElementById('fypForm');
+            const fypStepIndicator = document.getElementById('fypStepIndicator');
+            const fypBackBtn = document.getElementById('fypBackBtn');
+            const fypNextBtn = document.getElementById('fypNextBtn');
+            const fypSubmitBtn = document.getElementById('fypSubmitBtn');
+            const fypSuccessView = document.getElementById('fypSuccessView');
+            const fypSubmitAnotherBtn = document.getElementById('fypSubmitAnotherBtn');
+
+            // ---- Populate Primary/Secondary Domain selects from DOMAINS ----
+            const primaryDomainSel = document.getElementById('fyp-primary-domain');
+            const secondaryDomainSel = document.getElementById('fyp-secondary-domain');
+            DOMAINS.forEach(d => {
+                primaryDomainSel.insertAdjacentHTML('beforeend', `<option value="${d.name}">${d.name}</option>`);
+                secondaryDomainSel.insertAdjacentHTML('beforeend', `<option value="${d.name}">${d.name}</option>`);
+            });
+
+            // ---- Populate Preferred Topic select from PROJECT_TOPICS ----
+            const topicSel = document.getElementById('fyp-preferred-topic');
+            PROJECT_TOPICS.forEach(t => {
+                topicSel.insertAdjacentHTML('beforeend', `<option value="${t}">${t}</option>`);
+            });
+            const customTopicWrap = document.getElementById('fyp-custom-topic-wrap');
+            const customTopicInput = document.getElementById('fyp-custom-topic');
+            topicSel.addEventListener('change', () => {
+                const isOther = topicSel.value === 'Other / Custom Topic';
+                customTopicWrap.style.display = isOther ? 'flex' : 'none';
+                if (!isOther) { customTopicInput.value = ''; clearFieldError(customTopicInput); }
+            });
+
+            // ---- Supervisor reference list + selects ----
+            const refList = document.getElementById('fyp-supervisor-ref-list');
+            refList.innerHTML = SUPERVISORS.map(s => `
+                <div class="supervisor-ref-item">
+                    <div class="sr-name">${s.name}</div>
+                    <div class="sr-designation">${s.designation}</div>
+                    <div>${s.domains.slice(0, 4).map(d => `<span class="tag">${d}</span>`).join('')}</div>
+                </div>
+            `).join('');
+
+            const supSelects = [
+                document.getElementById('fyp-sup1'),
+                document.getElementById('fyp-sup2'),
+                document.getElementById('fyp-sup3')
+            ];
+            supSelects.forEach(sel => {
+                SUPERVISORS.forEach(s => {
+                    sel.insertAdjacentHTML('beforeend', `<option value="${s.name}">${s.name}</option>`);
+                });
+                sel.addEventListener('change', () => {
+                    updateSupervisorOptionState();
+                    validateSupervisorSelections();
+                });
+            });
+
+            function updateSupervisorOptionState() {
+                const chosen = supSelects.map(s => s.value).filter(Boolean);
+                supSelects.forEach(sel => {
+                    Array.from(sel.options).forEach(opt => {
+                        if (!opt.value) return;
+                        opt.disabled = chosen.includes(opt.value) && sel.value !== opt.value;
+                    });
+                });
+            }
+
+            function validateSupervisorSelections() {
+                const vals = supSelects.map(s => s.value).filter(Boolean);
+                const hasDupe = new Set(vals).size !== vals.length;
+                supSelects.forEach((sel, i) => {
+                    const group = sel.closest('.form-group');
+                    if (hasDupe && i > 0 && sel.value) {
+                        group.classList.add('field-error');
+                    } else {
+                        group.classList.remove('field-error');
+                    }
+                });
+                return !hasDupe;
+            }
+
+            // ---- Radio option "checked" styling ----
+            document.querySelectorAll('.radio-option input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    const groupName = radio.name;
+                    document.querySelectorAll(`input[name="${groupName}"]`).forEach(r => {
+                        r.closest('.radio-option').classList.toggle('checked', r.checked);
+                    });
+                });
+            });
+
+            // ---- Project Type conditional logic (Individual vs Group) ----
+            const groupSizeWrap = document.getElementById('fyp-group-size-wrap');
+            const leaderBlock = document.getElementById('fyp-leader-block');
+            const m2Block = document.getElementById('fyp-m2-block');
+            const m3Block = document.getElementById('fyp-m3-block');
+            const memberCountSel = document.getElementById('fyp-member-count');
+
+            function applyGroupFieldsVisibility() {
+                const type = document.querySelector('input[name="fyp-project-type"]:checked').value;
+                if (type === 'Individual') {
+                    groupSizeWrap.style.display = 'none';
+                    leaderBlock.style.display = 'none';
+                    m2Block.style.display = 'none';
+                    m3Block.style.display = 'none';
+                    setRequired('fyp-leader-name', false);
+                    setRequired('fyp-leader-reg', false);
+                    setRequired('fyp-m2-name', false);
+                    setRequired('fyp-m2-reg', false);
+                    setRequired('fyp-m3-name', false);
+                    setRequired('fyp-m3-reg', false);
+                } else {
+                    groupSizeWrap.style.display = 'grid';
+                    leaderBlock.style.display = 'block';
+                    setRequired('fyp-leader-name', true);
+                    setRequired('fyp-leader-reg', true);
+                    applyMemberCountVisibility();
+                }
+            }
+
+            function applyMemberCountVisibility() {
+                const count = parseInt(memberCountSel.value, 10);
+                m2Block.style.display = count >= 2 ? 'block' : 'none';
+                m3Block.style.display = count >= 3 ? 'block' : 'none';
+                setRequired('fyp-m2-name', count >= 2);
+                setRequired('fyp-m2-reg', count >= 2);
+                setRequired('fyp-m3-name', count >= 3);
+                setRequired('fyp-m3-reg', count >= 3);
+            }
+
+            function setRequired(id, isRequired) {
+                const el = document.getElementById(id);
+                if (!el) return;
+                if (isRequired) el.setAttribute('required', 'required');
+                else { el.removeAttribute('required'); clearFieldError(el); }
+            }
+
+            document.querySelectorAll('input[name="fyp-project-type"]').forEach(r => {
+                r.addEventListener('change', applyGroupFieldsVisibility);
+            });
+            memberCountSel.addEventListener('change', applyMemberCountVisibility);
+            applyGroupFieldsVisibility();
+
+            // ---- Field-level validation helpers ----
+            function showFieldError(el) {
+                const group = el.closest('.form-group');
+                if (group) group.classList.add('field-error');
+            }
+            function clearFieldError(el) {
+                const group = el.closest('.form-group');
+                if (group) group.classList.remove('field-error');
+            }
+            function isEmailValid(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+            }
+
+            // Supervisor selects (.fyp-sup-select) manage their own error state via
+            // validateSupervisorSelections() and must NOT be auto-cleared here,
+            // otherwise the duplicate-supervisor error would be wiped immediately.
+            document.querySelectorAll('.form-input, .form-select:not(.fyp-sup-select), .form-textarea').forEach(el => {
+                el.addEventListener('input', () => clearFieldError(el));
+                el.addEventListener('change', () => clearFieldError(el));
+            });
+
+            // ---- Step validation ----
+            function validateStep(step) {
+                let valid = true;
+
+                if (step === 1) {
+                    ['fyp-name', 'fyp-reg'].forEach(id => {
+                        const el = document.getElementById(id);
+                        if (!el.value.trim()) { showFieldError(el); valid = false; }
+                    });
+                    const emailEl = document.getElementById('fyp-email');
+                    if (!emailEl.value.trim() || !isEmailValid(emailEl.value)) {
+                        showFieldError(emailEl); valid = false;
+                    }
+                }
+
+                if (step === 2) {
+                    const type = document.querySelector('input[name="fyp-project-type"]:checked').value;
+                    if (type === 'Group') {
+                        ['fyp-leader-name', 'fyp-leader-reg'].forEach(id => {
+                            const el = document.getElementById(id);
+                            if (!el.value.trim()) { showFieldError(el); valid = false; }
+                        });
+                        const count = parseInt(memberCountSel.value, 10);
+                        if (count >= 2) {
+                            ['fyp-m2-name', 'fyp-m2-reg'].forEach(id => {
+                                const el = document.getElementById(id);
+                                if (!el.value.trim()) { showFieldError(el); valid = false; }
+                            });
+                        }
+                        if (count >= 3) {
+                            ['fyp-m3-name', 'fyp-m3-reg'].forEach(id => {
+                                const el = document.getElementById(id);
+                                if (!el.value.trim()) { showFieldError(el); valid = false; }
+                            });
+                        }
+                    }
+                }
+
+                if (step === 3) {
+                    ['fyp-title', 'fyp-description', 'fyp-primary-domain', 'fyp-preferred-topic'].forEach(id => {
+                        const el = document.getElementById(id);
+                        if (!el.value.trim()) { showFieldError(el); valid = false; }
+                    });
+                    if (topicSel.value === 'Other / Custom Topic' && !customTopicInput.value.trim()) {
+                        showFieldError(customTopicInput); valid = false;
+                    }
+                }
+
+                if (step === 4) {
+                    const sup1 = document.getElementById('fyp-sup1');
+                    if (!sup1.value) { showFieldError(sup1); valid = false; }
+                    if (!validateSupervisorSelections()) valid = false;
+                    const discussed = document.querySelector('input[name="fyp-discussed"]:checked');
+                    if (!discussed) valid = false;
+                }
+
+                if (step === 5) {
+                    const d1 = document.getElementById('fyp-decl1');
+                    const d2 = document.getElementById('fyp-decl2');
+                    const d3 = document.getElementById('fyp-decl3');
+                    const declErr = document.getElementById('fyp-decl-error');
+                    if (!(d1.checked && d2.checked && d3.checked)) {
+                        declErr.style.display = 'block';
+                        valid = false;
+                    } else {
+                        declErr.style.display = 'none';
+                    }
+                }
+
+                return valid;
+            }
+
+            // ---- Step navigation ----
+            function goToStep(n) {
+                fypCurrentStep = n;
+                document.querySelectorAll('.form-step').forEach(s => {
+                    s.classList.toggle('active', parseInt(s.dataset.step, 10) === n);
+                });
+                document.querySelectorAll('#fypStepIndicator .step-item').forEach(item => {
+                    const s = parseInt(item.dataset.step, 10);
+                    item.classList.toggle('active', s === n);
+                    item.classList.toggle('completed', s < n);
+                });
+                fypBackBtn.style.visibility = n === 1 ? 'hidden' : 'visible';
+                fypNextBtn.classList.toggle('hidden', n === FYP_TOTAL_STEPS);
+                fypSubmitBtn.classList.toggle('hidden', n !== FYP_TOTAL_STEPS);
+                document.getElementById('fypFormWrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            fypNextBtn.addEventListener('click', () => {
+                if (validateStep(fypCurrentStep)) {
+                    goToStep(Math.min(fypCurrentStep + 1, FYP_TOTAL_STEPS));
+                }
+            });
+            fypBackBtn.addEventListener('click', () => {
+                goToStep(Math.max(fypCurrentStep - 1, 1));
+            });
+
+            // ---- Submission ID generation ----
+            function generateSubmissionId() {
+                const year = new Date().getFullYear();
+                let counter = parseInt(localStorage.getItem('fypSubmissionCounter') || '0', 10) + 1;
+                localStorage.setItem('fypSubmissionCounter', String(counter));
+                return `FYP-${year}-${String(counter).padStart(5, '0')}`;
+            }
+
+            // ---- Save local backup copy (device-only fallback for admins) ----
+            function saveLocalBackup(record) {
+                try {
+                    const existing = JSON.parse(localStorage.getItem('fypSubmissions') || '[]');
+                    existing.push(record);
+                    localStorage.setItem('fypSubmissions', JSON.stringify(existing));
+                } catch (err) {
+                    console.error('Could not save local FYP backup:', err);
+                }
+            }
+
+            // ---- Send to Google Sheets via Apps Script Web App ----
+            async function sendToGoogleSheets(record) {
+                if (!FYP_SHEETS_ENDPOINT || FYP_SHEETS_ENDPOINT.indexOf('PASTE_YOUR') === 0) {
+                    console.warn('FYP_SHEETS_ENDPOINT is not configured yet. Submission saved locally only. See fyp-submission-setup.md.');
+                    return false;
+                }
+                try {
+                    // mode: 'no-cors' + text/plain avoids a CORS preflight against
+                    // the Apps Script Web App. The response is opaque, so we treat
+                    // a resolved fetch (no network error) as a successful delivery.
+                    await fetch(FYP_SHEETS_ENDPOINT, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify(record)
+                    });
+                    return true;
+                } catch (err) {
+                    console.error('FYP Google Sheets submission failed:', err);
+                    return false;
+                }
+            }
+
+            // ---- Form submit ----
+            fypForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (!validateStep(5)) return;
+
+                const type = document.querySelector('input[name="fyp-project-type"]:checked').value;
+                const isGroup = type === 'Group';
+                const memberCount = isGroup ? parseInt(memberCountSel.value, 10) : 1;
+
+                fypSubmitBtn.disabled = true;
+                fypSubmitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting…';
+
+                const submissionId = generateSubmissionId();
+                const record = {
+                    submissionId,
+                    submissionDate: new Date().toISOString(),
+                    studentName: document.getElementById('fyp-name').value.trim(),
+                    registrationNumber: document.getElementById('fyp-reg').value.trim(),
+                    universityEmail: document.getElementById('fyp-email').value.trim(),
+                    program: document.getElementById('fyp-program').value.trim(),
+                    batch: document.getElementById('fyp-batch').value.trim(),
+                    semester: document.getElementById('fyp-semester').value.trim(),
+                    projectType: type,
+                    numberOfMembers: memberCount,
+                    groupLeaderName: isGroup ? document.getElementById('fyp-leader-name').value.trim() : document.getElementById('fyp-name').value.trim(),
+                    groupLeaderReg: isGroup ? document.getElementById('fyp-leader-reg').value.trim() : document.getElementById('fyp-reg').value.trim(),
+                    member2Name: (isGroup && memberCount >= 2) ? document.getElementById('fyp-m2-name').value.trim() : '',
+                    member2Reg: (isGroup && memberCount >= 2) ? document.getElementById('fyp-m2-reg').value.trim() : '',
+                    member3Name: (isGroup && memberCount >= 3) ? document.getElementById('fyp-m3-name').value.trim() : '',
+                    member3Reg: (isGroup && memberCount >= 3) ? document.getElementById('fyp-m3-reg').value.trim() : '',
+                    projectTitle: document.getElementById('fyp-title').value.trim(),
+                    projectDescription: document.getElementById('fyp-description').value.trim(),
+                    primaryDomain: primaryDomainSel.value,
+                    secondaryDomain: secondaryDomainSel.value,
+                    preferredTopic: topicSel.value,
+                    customTopic: topicSel.value === 'Other / Custom Topic' ? customTopicInput.value.trim() : '',
+                    supervisor1: document.getElementById('fyp-sup1').value,
+                    supervisor2: document.getElementById('fyp-sup2').value,
+                    supervisor3: document.getElementById('fyp-sup3').value,
+                    discussedWithSupervisor: document.querySelector('input[name="fyp-discussed"]:checked').value,
+                    remarks: document.getElementById('fyp-remarks').value.trim(),
+                    status: 'Submitted'
+                };
+
+                saveLocalBackup(record);
+                await sendToGoogleSheets(record);
+
+                fypSubmitBtn.disabled = false;
+                fypSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit FYP';
+
+                fypForm.classList.add('hidden');
+                fypStepIndicator.classList.add('hidden');
+                fypSuccessView.classList.remove('hidden');
+                document.getElementById('fypSuccessId').textContent = `Submission ID: ${submissionId}`;
+                showToast('FYP submitted successfully!');
+            });
+
+            fypSubmitAnotherBtn.addEventListener('click', () => {
+                fypForm.reset();
+                document.querySelectorAll('.field-error').forEach(g => g.classList.remove('field-error'));
+                document.querySelectorAll('.radio-option').forEach(r => r.classList.remove('checked'));
+                document.querySelector('input[name="fyp-project-type"][value="Individual"]').checked = true;
+                document.querySelector('input[name="fyp-project-type"][value="Individual"]').closest('.radio-option').classList.add('checked');
+                applyGroupFieldsVisibility();
+                customTopicWrap.style.display = 'none';
+                updateSupervisorOptionState();
+                fypSuccessView.classList.add('hidden');
+                fypForm.classList.remove('hidden');
+                fypStepIndicator.classList.remove('hidden');
+                goToStep(1);
+            });
+
+            // Initialize default radio styling
+            document.querySelector('input[name="fyp-project-type"][value="Individual"]').closest('.radio-option').classList.add('checked');
+        }
 
         // ============================================================
         // INIT
